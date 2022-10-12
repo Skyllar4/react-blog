@@ -1,0 +1,23 @@
+.create-container {
+    height: 322px;
+    width: 500px;
+    border-radius: 12px;
+    margin: auto;
+    position: absolute;
+    top: 27%;
+    left: 29%;
+    background-color: white;
+    box-shadow: rgb(0 0 0 / 35%) 0px 10px 42px;
+}
+
+.create-from-elemetnts {
+    display: block;
+    margin: 50px auto;
+}
+
+.post-add-btn {
+    margin-left: 1050px;
+    margin-top: 60px;
+    padding: 10px 16px;
+    cursor: pointer;
+}
