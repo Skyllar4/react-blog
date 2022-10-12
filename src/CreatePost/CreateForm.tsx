@@ -31,6 +31,7 @@ export function CreateForm({show, modalVisiable, postCreate}: createModalProps) 
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
         createEl(title, content)
+        modalVisiable()
         event.preventDefault()
     }
 

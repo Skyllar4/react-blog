@@ -1,5 +1,4 @@
 import React from 'react';
-import './App.css';
 import { Content } from './Content/Content';
 import {Layout} from './Layout/Layout'
 

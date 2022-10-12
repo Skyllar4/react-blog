@@ -20,6 +20,6 @@ export function Card({title, content, pos}: CardProps) {
                     <div className='content-window'>
                         <p className='post-content'>{content}</p>
                     </div>
-                    <Link to={`/post/${pos}`} className="post-detail-link">Перейти</Link>
+                    <Link to={`/post/${pos + 1}`} className="post-detail-link">Перейти</Link>
               </li>
 }

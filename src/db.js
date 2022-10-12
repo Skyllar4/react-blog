@@ -33,7 +33,7 @@ export let db = [
 
 export function getPost(postId) {
     return db.find((item) => item.id === (Number(postId)))// функция, отдает в компонент детальной страницы карточки нужный пост
-} // работает толкьо при (Number(postId) + 1), но тогда при всех операциях удаляется не тот пост
+}
 
 export function deletePost(id) {
     db.splice(id, 1)
