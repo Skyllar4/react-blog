@@ -1,21 +1,29 @@
 import React from 'react';
 import '../Card/card.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useNavigate, useParams } from 'react-router-dom';
 import { getPost, deletePost, updatePost } from '../db';
 
 export function CardDetail() {
 
     const params = useParams();
+    const navigate = useNavigate();
     const post = getPost(params.postId)
-    console.log(params.postId)
 
     const [postTitle, setPostTitle] = React.useState(post?.title)
     const [postContent, setPostContent] = React.useState(post?.content)
     const [cardState, setCardState] = React.useState(true); // для того, чтобы после удаления карточка пропадала
 
-    const deleteCard = () => { // дублируется удаление, удаление уже есть в App
+    if (!cardState) {
+        return <div>Карточка удалена</div>
+    }
+
+    if (post?.id === undefined) { 
+        return <div>Пост не найден</div>
+    }
+
+    const deleteCard = () => {
         setCardState(false)
-        deletePost(post?.id)
+        deletePost(post.id - 1)
     }
 
     const handleChangeTitle = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -27,19 +35,18 @@ export function CardDetail() {
     }
 
     const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => { // при submit происходит редактирование карточки
-        updatePost(postTitle, postContent, post?.id)
+        updatePost(postTitle, postContent, post.id - 1)
         event.preventDefault()
+        navigate('/')
     }
 
     if (cardState) {
     return <div className='post-detail-container'>
                 <Link to={`/`} className="back-btn">Назад</Link>
-                <h1 className='post-title'>Запись {post?.title}</h1>
-                {/* title почему то самопроизвольно склоняется */}
-                {/* <p className='post-content'>{post?.content}</p> */}
+                <h1 className='post-title'>Запись {post.title}</h1>
                 <form onSubmit={handleSubmit} className="update-form">
-                    <input className='update-form-input-element' onChange={handleChangeTitle} type="text" defaultValue={post?.title}/>
-                    <textarea className='update-form-input-element content-input-element' onChange={handleChangeContent} defaultValue={post?.content} />
+                    <input className='update-form-input-element' onChange={handleChangeTitle} type="text" defaultValue={post.title}/>
+                    <textarea className='update-form-input-element content-input-element' onChange={handleChangeContent} defaultValue={post.content} />
                     <button type='submit'>Сохранить</button>
                 </form>
                 <button onClick={deleteCard}>Удалить</button> 

@@ -11,7 +11,6 @@ interface postCreateElement {
     content: string
 }
 
-
 export function Content() {
 
     const [data, setData] = React.useState(db)
@@ -28,7 +27,7 @@ export function Content() {
     }
 
     const blogPosts = data.map((item, pos) => {
-        return <Card key={item.id} title={item.title} content={item.content} pos={pos}/> // postDelete передается в качетсве пропа
+        return <Card key={item.id + 1} title={item.title} content={item.content} pos={pos}/> // postDelete передается в качетсве пропа
     })
 
         return <>

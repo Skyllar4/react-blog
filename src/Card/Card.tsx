@@ -5,7 +5,6 @@ import '../Card/card.css';
 interface CardProps {
     title: string,
     content: string,
-   // postDelete?: any, // any
     pos: number
 } // передается из Content
 
